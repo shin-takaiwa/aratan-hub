@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* フォント変数はランタイムで決まるので inline で展開する */
+@theme inline {
+  --font-sans: var(--font-inter);
+}
+
+/* DESIGN.md（Clay 系）のカラートークン。クリーム throughout・ライト固定 */
+@theme {
+  --color-canvas: #fffaf0;
+  --color-surface-soft: #faf5e8;
+  --color-surface-card: #f5f0e0;
+  --color-surface-strong: #ebe6d6;
+
+  --color-ink: #0a0a0a;
+  --color-ink-active: #1f1f1f;
+  --color-body: #3a3a3a;
+  --color-muted: #6a6a6a;
+  --color-muted-soft: #9a9a9a;
+  --color-hairline: #e5e5e5;
+
+  --color-brand-pink: #ff4d8b;
+  --color-brand-teal: #1a3a3a;
+  --color-brand-lavender: #b8a4ed;
+  --color-brand-peach: #ffb084;
+  --color-brand-ochre: #e8b94a;
+  --color-brand-mint: #a4d4c5;
+
+  --color-success: #22c55e;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+}
