@@ -1,4 +1,4 @@
-import { apps, type Accent } from "@/data/apps";
+import { apps, works, type Accent } from "@/data/apps";
 
 // 絵文字タイルの彩度カラー。teal/pink は白文字、淡色は ink（DESIGN.md の対比則）
 const accentTile: Record<Accent, string> = {
@@ -16,8 +16,69 @@ const socials = [
   { label: "Note", href: "https://note.com/aratan45" },
 ];
 
+function StatusDot({ status }: { status: "live" | "ended" }) {
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <span
+        aria-hidden
+        className={`size-2 rounded-full ${
+          status === "live" ? "bg-success" : "bg-muted-soft"
+        }`}
+      />
+      {status === "live" ? "稼働" : "終了"}
+    </span>
+  );
+}
+
+function Card({
+  href,
+  emoji,
+  accent,
+  name,
+  pitch,
+  meta,
+}: {
+  href: string;
+  emoji: string;
+  accent: Accent;
+  name: string;
+  pitch: string;
+  meta: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface-card p-5 transition-colors hover:border-ink/20"
+    >
+      <div
+        aria-hidden
+        className={`flex size-14 shrink-0 items-center justify-center rounded-xl text-2xl ${accentTile[accent]}`}
+      >
+        {emoji}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2 text-xs font-medium text-muted">
+          {meta}
+        </div>
+        <h3 className="mt-1 truncate text-lg font-semibold text-ink">{name}</h3>
+        <p className="line-clamp-2 text-sm text-body">{pitch}</p>
+      </div>
+
+      <span
+        aria-hidden
+        className="shrink-0 text-xl text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-ink"
+      >
+        →
+      </span>
+    </a>
+  );
+}
+
 export default function Home() {
-  const list = [...apps].reverse(); // 新しい #N を先頭に積む
+  const weekly = [...apps].reverse(); // 新しい #N を先頭に積む
   const shipped = apps.length;
   const year = new Date().getFullYear();
 
@@ -51,53 +112,55 @@ export default function Home() {
         </div>
       </header>
 
-      {/* カード一覧（Marc Lou 型・収益列なし） */}
-      <section className="flex flex-col gap-4">
-        {list.map((app) => (
-          <a
-            key={app.n}
-            href={app.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface-card p-5 transition-colors hover:border-ink/20"
-          >
-            <div
-              aria-hidden
-              className={`flex size-14 shrink-0 items-center justify-center rounded-xl text-2xl ${accentTile[app.accent]}`}
-            >
-              {app.emoji}
-            </div>
+      {/* 1W1A 週アプリ（Marc Lou 型・収益列なし） */}
+      <section>
+        <h2 className="mb-4 text-xs font-semibold uppercase tracking-wide text-muted">
+          毎週の1アプリ
+        </h2>
+        <div className="flex flex-col gap-4">
+          {weekly.map((app) => (
+            <Card
+              key={app.n}
+              href={app.url}
+              emoji={app.emoji}
+              accent={app.accent}
+              name={app.name}
+              pitch={app.pitch}
+              meta={
+                <>
+                  <span className="text-ink">#{app.n}</span>
+                  <span className="rounded-full bg-surface-strong px-2 py-0.5">
+                    {app.week}
+                  </span>
+                  <StatusDot status={app.status} />
+                </>
+              }
+            />
+          ))}
+        </div>
+      </section>
 
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2 text-xs font-medium text-muted">
-                <span className="text-ink">#{app.n}</span>
-                <span className="rounded-full bg-surface-strong px-2 py-0.5">
-                  {app.week}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span
-                    aria-hidden
-                    className={`size-2 rounded-full ${
-                      app.status === "live" ? "bg-success" : "bg-muted-soft"
-                    }`}
-                  />
-                  {app.status === "live" ? "稼働" : "終了"}
-                </span>
-              </div>
-              <h2 className="mt-1 truncate text-lg font-semibold text-ink">
-                {app.name}
-              </h2>
-              <p className="line-clamp-2 text-sm text-body">{app.pitch}</p>
-            </div>
-
-            <span
-              aria-hidden
-              className="shrink-0 text-xl text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-ink"
-            >
-              →
-            </span>
-          </a>
-        ))}
+      {/* 1W1A 以前に作ったもの（連番なし・別枠） */}
+      <section className="mt-12">
+        <h2 className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">
+          1W1A をはじめる前に
+        </h2>
+        <p className="mb-4 text-sm text-muted-soft">
+          週次の連番には含めない、これまでの個人開発。
+        </p>
+        <div className="flex flex-col gap-4">
+          {works.map((work) => (
+            <Card
+              key={work.url}
+              href={work.url}
+              emoji={work.emoji}
+              accent={work.accent}
+              name={work.name}
+              pitch={work.pitch}
+              meta={<StatusDot status={work.status} />}
+            />
+          ))}
+        </div>
       </section>
 
       {/* フッター（DESIGN.md: ダークにしない・クリーム throughout） */}

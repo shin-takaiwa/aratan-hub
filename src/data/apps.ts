@@ -4,9 +4,8 @@
 
 export type Accent = "pink" | "teal" | "lavender" | "peach" | "ochre" | "mint";
 
-export type App = {
-  n: number; // 通し番号 #N（= N週目）
-  week: string; // "2026-W24"
+// 全カード共通のフィールド。
+type Base = {
   name: string;
   pitch: string; // 一言（15〜30字）
   emoji: string; // カテゴリ絵文字
@@ -14,6 +13,15 @@ export type App = {
   url: string;
   accent: Accent; // 絵文字タイルの彩度カラー（DESIGN.md の brand 6色を循環）
 };
+
+// 1W1A の週アプリ。連番 #N と週IDを持つ＝「毎週1枚ずつ増える」系列。
+export type App = Base & {
+  n: number; // 通し番号 #N（= N週目）
+  week: string; // "2026-W24"
+};
+
+// 1W1A 以前に作った個人開発。連番・週IDを持たない（系列を薄めないため別枠）。
+export type Work = Base;
 
 export const apps: App[] = [
   {
@@ -25,5 +33,25 @@ export const apps: App[] = [
     status: "live",
     url: "https://aratan.dev",
     accent: "teal",
+  },
+];
+
+// 1W1A をはじめる前に作ったもの。静的・更新は手動。連番は振らない。
+export const works: Work[] = [
+  {
+    name: "ポピット",
+    pitch: "アイデアからSNS各社向けの投稿文をAIが下書き",
+    emoji: "✍️",
+    status: "live",
+    url: "https://popipopit.app/",
+    accent: "pink",
+  },
+  {
+    name: "こどもミニゲーム",
+    pitch: "1〜8歳向けの知育ミニゲーム集。数字・クイズなど6種",
+    emoji: "🎮",
+    status: "live",
+    url: "https://kids-mini-game.web.app/",
+    accent: "peach",
   },
 ];
