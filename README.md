@@ -1,37 +1,46 @@
-# template — 週アプリの雛形
+# Aratan Hub
 
-毎週コピーして使う実装の起点。中身は生成済み: **Next.js 16 + TypeScript + Tailwind v4 + App Router（src/ 構成・import alias `@/*`）**。Supabase クライアントは**オプトイン**（使う週だけ配線）、Vercel Analytics は**配線済み**。
+**https://aratan.dev**
 
-> `node_modules` は雛形に含めない。コピー後に `npm install` で復元する。
+「1週間で1アプリを作って公開する」個人開発 **1W1A** の母艦。公開したアプリのカード型リンク集です。リストは毎週土曜、1枚ずつ増えていきます。
 
-## 使い方
+## これは何
+
+- 公開した週アプリの**入口とメタ情報**（通し番号 `#N`・週ID・一言ピッチ・状態）
+- 週アプリは使い捨て前提・このハブだけが唯一「育てる」アプリ
+- 静的サイト（**DBなし**）。データは TypeScript の配列で持ち、週公開のたびに手で1要素追記する
+
+## スタック
+
+Next.js 16 / TypeScript / Tailwind CSS v4 / Vercel（Analytics 含む）
+
+## データの持ち方
+
+すべて [`src/data/apps.ts`](src/data/apps.ts):
+
+- `apps` … 1W1A の週アプリ。`n`（通し番号）と `week`（`2026-W24` 形式）を持ち、表示は新しい順
+- `works` … 1W1A 以前に作った個人開発。連番なしの別枠
+- `icon` を指定すると実アプリのアイコン画像、なければ絵文字＋ブランドカラーのタイルで表示
+
+週の公開フロー: `apps` 末尾に1要素追記 → コミット → Vercel が自動デプロイ。
+
+## 開発
 
 ```bash
-# 1. 週フォルダの app/ としてコピー
-cp -r template "weeks/2026-W24-quicknote/app"
-cd "weeks/2026-W24-quicknote/app"
-
-# 2. 独立リポにする（以降このリポは基盤[1A1W]から切り離す）
-git init
-
-# 3. 依存を復元して起動
 npm install
-npm run dev
+npm run dev      # 開発サーバ
+npm run build    # 本番ビルド
+npm run lint
 ```
 
-## 同梱しているもの
+## 構成の要点
 
-- `src/app/layout.tsx` … `<Analytics />` 配線済み・`lang="ja"`・metadata は週ごとに上書き
-- `src/lib/supabase/client.ts` … ブラウザ用（`createBrowserClient`）
-- `src/lib/supabase/server.ts` … サーバー用（`createServerClient` + async `cookies()`）
-- `.env.example` … Supabase / 解析の env サンプル
-- `PRELAUNCH.md` … [公開前チェック](../docs/checklist-launch.md)のコピー（公開前に消化）
-- `CLAUDE.md` / `AGENTS.md` … Next 16 同梱のエージェント向けガイド（破壊的変更の注意書き）
+- `src/app/page.tsx` … 1ページ完結（ヒーロー＋カード2セクション）
+- `src/app/opengraph-image.tsx` … OGP 画像（ビルド時に静的生成）
+- `src/app/icon.svg` / `not-found.tsx` / `robots.ts` / `sitemap.ts` … 公開前メタ一式
+- `DESIGN.md` … デザイントークン（クリーム基調＋彩度6色のカードパレット）
+- `PRELAUNCH.md` … 公開前チェックリスト
 
-## Supabase を使う週だけ
+## 作者
 
-1. `.env.local` に `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` を設定
-2. 共有プロジェクト規約（[../docs/supabase-shared.md](../docs/supabase-shared.md)）に従いスキーマを切る（RLS 必須）
-3. `import { createClient } from "@/lib/supabase/client"`（or `/server"`）で使う
-
-DB不要の週は `src/lib/supabase/` を触らなくてよい。
+Aratan — [X](https://x.com/Aratan45) / [Note](https://note.com/aratan45) / [GitHub](https://github.com/shin-takaiwa)
