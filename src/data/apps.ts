@@ -57,5 +57,6 @@ export const works: Work[] = [
     status: "live",
     url: "https://kids-mini-game.web.app/",
     accent: "peach",
+    icon: "/kids-mini-game.png",
   },
 ];
