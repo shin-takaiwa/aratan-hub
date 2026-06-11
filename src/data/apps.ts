@@ -5,13 +5,16 @@
 export type Accent = "pink" | "teal" | "lavender" | "peach" | "ochre" | "mint";
 
 // 全カード共通のフィールド。
+// 見た目は icon（実アイコン画像・public配下のパス）があればそれを優先。
+// なければ emoji + accent の彩度タイルにフォールバックする。
 type Base = {
   name: string;
   pitch: string; // 一言（15〜30字）
-  emoji: string; // カテゴリ絵文字
+  emoji: string; // カテゴリ絵文字（icon 未指定時のタイル中身）
   status: "live" | "ended";
   url: string;
   accent: Accent; // 絵文字タイルの彩度カラー（DESIGN.md の brand 6色を循環）
+  icon?: string; // 実アイコン画像（例: "/popipopit.svg"）。あれば emoji/accent より優先
 };
 
 // 1W1A の週アプリ。連番 #N と週IDを持つ＝「毎週1枚ずつ増える」系列。
@@ -45,6 +48,7 @@ export const works: Work[] = [
     status: "live",
     url: "https://popipopit.app/",
     accent: "pink",
+    icon: "/popipopit.svg",
   },
   {
     name: "こどもミニゲーム",

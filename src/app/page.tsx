@@ -34,6 +34,7 @@ function Card({
   href,
   emoji,
   accent,
+  icon,
   name,
   pitch,
   meta,
@@ -41,6 +42,7 @@ function Card({
   href: string;
   emoji: string;
   accent: Accent;
+  icon?: string;
   name: string;
   pitch: string;
   meta: React.ReactNode;
@@ -52,12 +54,22 @@ function Card({
       rel="noopener noreferrer"
       className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface-card p-5 transition-colors hover:border-ink/20"
     >
-      <div
-        aria-hidden
-        className={`flex size-14 shrink-0 items-center justify-center rounded-xl text-2xl ${accentTile[accent]}`}
-      >
-        {emoji}
-      </div>
+      {icon ? (
+        // eslint-disable-next-line @next/next/no-img-element -- 静的SVGアイコン。最適化不要
+        <img
+          src={icon}
+          alt=""
+          aria-hidden
+          className="size-14 shrink-0 rounded-xl"
+        />
+      ) : (
+        <div
+          aria-hidden
+          className={`flex size-14 shrink-0 items-center justify-center rounded-xl text-2xl ${accentTile[accent]}`}
+        >
+          {emoji}
+        </div>
+      )}
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2 text-xs font-medium text-muted">
@@ -124,6 +136,7 @@ export default function Home() {
               href={app.url}
               emoji={app.emoji}
               accent={app.accent}
+              icon={app.icon}
               name={app.name}
               pitch={app.pitch}
               meta={
@@ -155,6 +168,7 @@ export default function Home() {
               href={work.url}
               emoji={work.emoji}
               accent={work.accent}
+              icon={work.icon}
               name={work.name}
               pitch={work.pitch}
               meta={<StatusDot status={work.status} />}
