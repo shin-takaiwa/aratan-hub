@@ -36,6 +36,7 @@ export const apps: App[] = [
     status: "live",
     url: "https://aratan.dev",
     accent: "teal",
+    icon: "/aratan-hub.svg",
   },
   {
     n: 2,
@@ -46,6 +47,7 @@ export const apps: App[] = [
     status: "live",
     url: "https://code-roast.aratan.dev",
     accent: "pink",
+    icon: "/code-roast.svg",
   },
 ];
 
