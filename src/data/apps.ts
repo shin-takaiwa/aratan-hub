@@ -7,6 +7,8 @@ export type Accent = "pink" | "teal" | "lavender" | "peach" | "ochre" | "mint";
 // 全カード共通のフィールド。
 // 見た目は icon（実アイコン画像・public配下のパス）があればそれを優先。
 // なければ emoji + accent の彩度タイルにフォールバックする。
+// ルール: 登録時は必ず icon を設定する（アプリの favicon を public/ にコピー）。
+// emoji タイルは暫定表示であり、公開状態のまま放置しない。
 type Base = {
   name: string;
   pitch: string; // 一言（15〜30字）
