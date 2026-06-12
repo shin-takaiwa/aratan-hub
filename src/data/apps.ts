@@ -19,7 +19,7 @@ type Base = {
 
 // 1W1A の週アプリ。連番 #N と週IDを持つ＝「毎週1枚ずつ増える」系列。
 export type App = Base & {
-  n: number; // 通し番号 #N（= N週目）
+  n: number; // 通し番号 #N（同週に複数本あり得るため「N週目」とは限らない）
   week: string; // "2026-W24"
 };
 
@@ -36,6 +36,16 @@ export const apps: App[] = [
     status: "live",
     url: "https://aratan.dev",
     accent: "teal",
+  },
+  {
+    n: 2,
+    week: "2026-W24",
+    name: "コードロースト",
+    pitch: "コードを辛口AIが採点、カードでXに晒せる",
+    emoji: "🔥",
+    status: "live",
+    url: "https://code-roast.aratan.dev",
+    accent: "pink",
   },
 ];
 
