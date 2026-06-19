@@ -51,6 +51,17 @@ export const apps: App[] = [
     accent: "pink",
     icon: "/code-roast.svg",
   },
+  {
+    n: 3,
+    week: "2026-W25",
+    name: "ogtto",
+    pitch: "タイトルを入れると記事に貼れるOGP画像URLを発行",
+    emoji: "🖼️",
+    status: "live",
+    url: "https://ogtto.aratan.dev",
+    accent: "lavender",
+    icon: "/2026-W25-ogp.svg",
+  },
 ];
 
 // 1W1A をはじめる前に作ったもの。静的・更新は手動。連番は振らない。
