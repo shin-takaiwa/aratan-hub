@@ -62,6 +62,17 @@ export const apps: App[] = [
     accent: "lavender",
     icon: "/2026-W25-ogp.svg",
   },
+  {
+    n: 4,
+    week: "2026-W26",
+    name: "コンプいくら？",
+    pitch: "全何種・1回いくらでコンプ完走の期待回数と総額を出す",
+    emoji: "🎰",
+    status: "live",
+    url: "https://gacha-cost.aratan.dev",
+    accent: "peach",
+    icon: "/gacha-cost.svg",
+  },
 ];
 
 // 1W1A をはじめる前に作ったもの。静的・更新は手動。連番は振らない。
