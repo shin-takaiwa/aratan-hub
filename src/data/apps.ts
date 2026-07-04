@@ -73,6 +73,17 @@ export const apps: App[] = [
     accent: "peach",
     icon: "/gacha-cost.svg",
   },
+  {
+    n: 5,
+    week: "2026-W27",
+    name: "WhyTree",
+    pitch: "「なぜ？」を繰り返すだけで根本原因が1枚のツリーに",
+    emoji: "🌳",
+    status: "live",
+    url: "https://why-tree.aratan.dev",
+    accent: "mint",
+    icon: "/why-tree.svg",
+  },
 ];
 
 // 1W1A をはじめる前に作ったもの。静的・更新は手動。連番は振らない。
