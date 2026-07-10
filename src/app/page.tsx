@@ -153,13 +153,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 1W1A 以前に作ったもの（連番なし・別枠） */}
+      {/* 1W1A の連番に含めないもの（以前の作・並行運用中・別枠） */}
       <section className="mt-12">
         <h2 className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">
-          1W1A をはじめる前に
+          1W1A のそとで
         </h2>
         <p className="mb-4 text-sm text-muted-soft">
-          週次の連番には含めない、これまでの個人開発。
+          週次の連番には含めない個人開発。以前に作ったものと、並行して運用中のもの。
         </p>
         <div className="flex flex-col gap-4">
           {works.map((work) => (

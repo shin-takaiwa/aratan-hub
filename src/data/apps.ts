@@ -97,8 +97,18 @@ export const apps: App[] = [
   },
 ];
 
-// 1W1A をはじめる前に作ったもの。静的・更新は手動。連番は振らない。
+// 1W1A の連番に含めない個人開発（以前に作ったもの・並行して運用中のもの）。
+// 静的・更新は手動。表示は配列順のまま＝新しいものは先頭に追加する。
 export const works: Work[] = [
+  {
+    name: "補助金みっけ",
+    pitch: "事業に使える補助金・助成金が検索と締切アラートで見つかる",
+    emoji: "🔎",
+    status: "live",
+    url: "https://hojokin-mikke.com",
+    accent: "mint",
+    icon: "/hojokin-mikke.svg",
+  },
   {
     name: "ポピット",
     pitch: "アイデアからSNS各社向けの投稿文をAIが下書き",
