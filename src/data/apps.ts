@@ -84,6 +84,17 @@ export const apps: App[] = [
     accent: "mint",
     icon: "/why-tree.svg",
   },
+  {
+    n: 6,
+    week: "2026-W28",
+    name: "あなたの模様",
+    pitch: "名前や記念日から、世界にひとつの模様が生まれる",
+    emoji: "🌀",
+    status: "live",
+    url: "https://seed-art.aratan.dev",
+    accent: "ochre",
+    icon: "/seed-art.svg",
+  },
 ];
 
 // 1W1A をはじめる前に作ったもの。静的・更新は手動。連番は振らない。
