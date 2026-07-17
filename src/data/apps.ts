@@ -95,6 +95,17 @@ export const apps: App[] = [
     accent: "ochre",
     icon: "/seed-art.svg",
   },
+  {
+    n: 7,
+    week: "2026-W29",
+    name: "で賞メーカー",
+    pitch: "名前とネタ賞を入れると、ふざけた表彰状を作って贈れる",
+    emoji: "🏆",
+    status: "live",
+    url: "https://desho-maker.aratan.dev",
+    accent: "peach",
+    icon: "/desho-maker.svg",
+  },
 ];
 
 // 1W1A の連番に含めない個人開発（以前に作ったもの・並行して運用中のもの）。
