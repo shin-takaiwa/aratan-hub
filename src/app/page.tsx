@@ -38,6 +38,7 @@ function Card({
   name,
   pitch,
   meta,
+  ended,
 }: {
   href: string;
   emoji: string;
@@ -46,14 +47,10 @@ function Card({
   name: string;
   pitch: string;
   meta: React.ReactNode;
+  ended?: boolean;
 }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface-card p-5 transition-colors hover:border-ink/20"
-    >
+  const inner = (
+    <>
       {icon ? (
         // eslint-disable-next-line @next/next/no-img-element -- 静的SVGアイコン。最適化不要
         <img
@@ -79,12 +76,34 @@ function Card({
         <p className="line-clamp-2 text-sm text-body">{pitch}</p>
       </div>
 
-      <span
-        aria-hidden
-        className="shrink-0 text-xl text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-ink"
-      >
-        →
-      </span>
+      {!ended && (
+        <span
+          aria-hidden
+          className="shrink-0 text-xl text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-ink"
+        >
+          →
+        </span>
+      )}
+    </>
+  );
+
+  // 終了したアプリはリンクにしない（遷移先が消えているため）。淡色で無効表示。
+  if (ended) {
+    return (
+      <div className="flex items-center gap-4 rounded-2xl border border-hairline bg-surface-card p-5 opacity-60">
+        {inner}
+      </div>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface-card p-5 transition-colors hover:border-ink/20"
+    >
+      {inner}
     </a>
   );
 }
@@ -139,6 +158,7 @@ export default function Home() {
               icon={app.icon}
               name={app.name}
               pitch={app.pitch}
+              ended={app.status === "ended"}
               meta={
                 <>
                   <span className="text-ink">#{app.n}</span>
@@ -171,6 +191,7 @@ export default function Home() {
               icon={work.icon}
               name={work.name}
               pitch={work.pitch}
+              ended={work.status === "ended"}
               meta={<StatusDot status={work.status} />}
             />
           ))}
