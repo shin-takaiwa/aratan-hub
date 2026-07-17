@@ -113,7 +113,7 @@ export const works: Work[] = [
     name: "ポピット",
     pitch: "アイデアからSNS各社向けの投稿文をAIが下書き",
     emoji: "✍️",
-    status: "live",
+    status: "ended",
     url: "https://popipopit.app/",
     accent: "pink",
     icon: "/popipopit.svg",
