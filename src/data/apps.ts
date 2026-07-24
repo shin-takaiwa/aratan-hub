@@ -112,6 +112,24 @@ export const apps: App[] = [
 // 静的・更新は手動。表示は配列順のまま＝新しいものは先頭に追加する。
 export const works: Work[] = [
   {
+    name: "クラフト計算室",
+    pitch: "マイクラのエンチャント順序や円・交易が計算できる5ツール",
+    emoji: "⛏️",
+    status: "live",
+    url: "https://craft-calc.com",
+    accent: "teal",
+    icon: "/craft-calc.svg",
+  },
+  {
+    name: "マジック計算室",
+    pitch: "プロ野球の優勝マジック・CS進出条件を毎日自動計算",
+    emoji: "⚾",
+    status: "live",
+    url: "https://yakyu-tools.com",
+    accent: "ochre",
+    icon: "/yakyu-tools.svg",
+  },
+  {
     name: "補助金みっけ",
     pitch: "事業に使える補助金・助成金が検索と締切アラートで見つかる",
     emoji: "🔎",
